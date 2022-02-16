@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDEV240_GroupProject", "SDEV240_GroupProject\SDEV240_GroupProject.csproj", "{76689E81-54C5-426B-B57C-652A2DCFBAE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialCostLib", "MaterialCostLib\MaterialCostLib.csproj", "{4A6A85D6-DF71-4347-8B17-404622F90050}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76689E81-54C5-426B-B57C-652A2DCFBAE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76689E81-54C5-426B-B57C-652A2DCFBAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76689E81-54C5-426B-B57C-652A2DCFBAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76689E81-54C5-426B-B57C-652A2DCFBAE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A6A85D6-DF71-4347-8B17-404622F90050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A6A85D6-DF71-4347-8B17-404622F90050}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A6A85D6-DF71-4347-8B17-404622F90050}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A6A85D6-DF71-4347-8B17-404622F90050}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BF6DB6F-8A88-4C76-94C1-6BF35C48B0F9}
+	EndGlobalSection
+EndGlobal
