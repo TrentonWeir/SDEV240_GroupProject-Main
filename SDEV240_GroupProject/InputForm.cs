@@ -29,8 +29,8 @@ namespace SDEV240_GroupProject
             item.Item = textBox1.Text;
             item.Material = ddlMaterialInput.Text;
             item.Description = textBox3.Text;
-            item.Qty = float.Parse(textBox4.Text);
-            item.UnitCost = float.Parse(textBox5.Text);
+            item.Qty = Convert.ToInt32(txtQty.Value);
+            item.UnitCost = float.Parse(txtUnitCost.Text);
             item.Cost = (item.UnitCost * item.Qty).ToString("C", CultureInfo.CurrentCulture);
             var list = new List<MainDTO>();
             list.Add(item);

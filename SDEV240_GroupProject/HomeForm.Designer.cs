@@ -46,6 +46,7 @@ namespace SDEV240_GroupProject
             this.btnNavInput = new System.Windows.Forms.Button();
             this.ddlSearchType = new System.Windows.Forms.ComboBox();
             this.btnNavHome = new System.Windows.Forms.Button();
+            this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.gvMaterialCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDTOBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -217,6 +218,7 @@ namespace SDEV240_GroupProject
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
+        private System.Windows.Forms.SaveFileDialog SaveFileDialog;
     }
 }
 

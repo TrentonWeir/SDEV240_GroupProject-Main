@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
+using System.Text;
 
 namespace SDEV240_GroupProject
 {
@@ -91,10 +93,28 @@ namespace SDEV240_GroupProject
 
         private void btnSaveGrid_Click(object sender, EventArgs e)
         {
-            foreach(var row in gvMaterialCost.Rows)
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "CSV File|*.csv";
+            save.Title = "Save CSV File";
+            save.ShowDialog();
+            if (!string.IsNullOrWhiteSpace(save.FileName))
             {
-               
+                var csv = new StringBuilder();
+                foreach (DataGridViewRow row in gvMaterialCost.Rows)
+                {
+                    var LastInRow = row.Cells.Count - 1;
+                    string csvBuilder = string.Empty;
+                    for (int i = 0; i < LastInRow; i++)
+                    {
+                        csvBuilder += $"{row.Cells[i].Value},";
+                    }
+                    csvBuilder += $"{row.Cells[LastInRow].Value}";
+                    csv.AppendLine(csvBuilder);
+                }
+                File.AppendAllText(save.FileName, csv.ToString());
+                MessageBox.Show("Saved!");
             }
+
         }
     }
 }

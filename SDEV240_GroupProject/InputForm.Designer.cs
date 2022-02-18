@@ -36,9 +36,7 @@ namespace SDEV240_GroupProject
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.btnNewCostRecord = new System.Windows.Forms.Button();
             this.ddlCategoryInput = new System.Windows.Forms.ComboBox();
             this.ddlMaterialInput = new System.Windows.Forms.ComboBox();
@@ -50,6 +48,9 @@ namespace SDEV240_GroupProject
             this.btnMaterialSave = new System.Windows.Forms.Button();
             this.btnDeleteCategory = new System.Windows.Forms.Button();
             this.btnDeleteMaterial = new System.Windows.Forms.Button();
+            this.txtQty = new System.Windows.Forms.NumericUpDown();
+            this.txtUnitCost = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCategory
@@ -111,13 +112,6 @@ namespace SDEV240_GroupProject
             this.label4.TabIndex = 9;
             this.label4.Text = "Quantity";
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(461, 59);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 8;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -126,13 +120,6 @@ namespace SDEV240_GroupProject
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 11;
             this.label5.Text = "Unit Cost";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(567, 59);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 10;
             // 
             // btnNewCostRecord
             // 
@@ -231,11 +218,27 @@ namespace SDEV240_GroupProject
             this.btnDeleteMaterial.UseVisualStyleBackColor = true;
             this.btnDeleteMaterial.Click += new System.EventHandler(this.btnDeleteMaterial_Click);
             // 
+            // txtQty
+            // 
+            this.txtQty.Location = new System.Drawing.Point(461, 60);
+            this.txtQty.Name = "txtQty";
+            this.txtQty.Size = new System.Drawing.Size(100, 20);
+            this.txtQty.TabIndex = 25;
+            // 
+            // txtUnitCost
+            // 
+            this.txtUnitCost.Location = new System.Drawing.Point(567, 60);
+            this.txtUnitCost.Name = "txtUnitCost";
+            this.txtUnitCost.Size = new System.Drawing.Size(100, 20);
+            this.txtUnitCost.TabIndex = 26;
+            // 
             // InputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 408);
+            this.Controls.Add(this.txtUnitCost);
+            this.Controls.Add(this.txtQty);
             this.Controls.Add(this.btnDeleteMaterial);
             this.Controls.Add(this.btnDeleteCategory);
             this.Controls.Add(this.btnMaterialSave);
@@ -248,9 +251,7 @@ namespace SDEV240_GroupProject
             this.Controls.Add(this.ddlCategoryInput);
             this.Controls.Add(this.btnNewCostRecord);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label2);
@@ -260,6 +261,7 @@ namespace SDEV240_GroupProject
             this.Name = "InputForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.InputForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,9 +275,7 @@ namespace SDEV240_GroupProject
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button btnNewCostRecord;
         private System.Windows.Forms.ComboBox ddlCategoryInput;
         private System.Windows.Forms.ComboBox ddlMaterialInput;
@@ -287,5 +287,7 @@ namespace SDEV240_GroupProject
         private System.Windows.Forms.Button btnMaterialSave;
         private System.Windows.Forms.Button btnDeleteCategory;
         private System.Windows.Forms.Button btnDeleteMaterial;
+        private System.Windows.Forms.NumericUpDown txtQty;
+        private System.Windows.Forms.TextBox txtUnitCost;
     }
 }
