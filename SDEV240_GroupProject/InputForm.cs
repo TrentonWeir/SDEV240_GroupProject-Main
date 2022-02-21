@@ -23,7 +23,7 @@ namespace SDEV240_GroupProject
         }
         private void InputFunction()
         {
-           //File.Delete("../../../DataSource/MainDataBase.csv");
+           //File.Delete("../../../DataSource/MainDataBase.csv");//Used for deleteing everthing inTests
             MainDTO item = new MainDTO();
             item.Category = ddlCategoryInput.Text;
             item.Item = textBox1.Text;
@@ -40,7 +40,37 @@ namespace SDEV240_GroupProject
 
         private void btnNewCostRecord_Click(object sender, EventArgs e)
         {
-            InputFunction();
+            try
+            {
+                if(ValidateTextBoxes())
+                {
+                    InputFunction();
+                }
+                else
+                {
+                    MessageBox.Show($"Please enter the Unit Cost with a number, No \"$\" or letters please.");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex}");
+            }
+                
+            
+        }
+        private bool ValidateTextBoxes()
+        {
+            var str = string.Empty;
+            bool isValid = true;
+            if (string.IsNullOrWhiteSpace(txtUnitCost.Text) && Convert.ToDecimal(txtUnitCost.Text) > 0)
+            {
+
+            }
+            else
+                str += $"Please enter the Unit Cost with a number, No \"$\" or letters please.";
+
+            return isValid;
+            
         }
 
         private void InputForm_Load(object sender, EventArgs e)
@@ -50,12 +80,20 @@ namespace SDEV240_GroupProject
         }
         private void LoadMaterials()
         {
-            var db = new MaterialCostLib.BusinessLayer.Main();
-            var data = db.SelectMaterialData();
-            foreach (var item in data)
+            try
             {
-                ddlMaterialInput.Items.Add(item.Material);
+                var db = new MaterialCostLib.BusinessLayer.Main();
+                var data = db.SelectMaterialData();
+                foreach (var item in data)
+                {
+                    ddlMaterialInput.Items.Add(item.Material);
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex}");
+            }
+
         }
         private void LoadCategories()
         {
@@ -66,11 +104,18 @@ namespace SDEV240_GroupProject
                 ddlCategoryInput.Items.Add(item.Category);
             }
         }
-        private void Refresh()
+        private void RefreshThisForm()
         {
-            DdlClear();
-            LoadCategories();
-            LoadMaterials();
+            try
+            {
+                DdlClear();
+                LoadCategories();
+                LoadMaterials();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex}");
+            }
         }
         private void DdlClear()
         {
@@ -83,7 +128,7 @@ namespace SDEV240_GroupProject
             var db = new MaterialCostLib.BusinessLayer.Main();
             db.InsertIntoCategory(txtCategory.Text);
             txtCategory.Text = string.Empty;
-            Refresh();
+            RefreshThisForm();
         }
 
         private void btnMaterialSave_Click(object sender, EventArgs e)
@@ -91,7 +136,7 @@ namespace SDEV240_GroupProject
             var db = new MaterialCostLib.BusinessLayer.Main();
             db.InsertIntoMaterial(txtMaterial.Text);
             txtMaterial.Text = string.Empty;
-            Refresh();
+            RefreshThisForm();
         }
 
         private void btnDeleteMaterial_Click(object sender, EventArgs e)
@@ -106,7 +151,7 @@ namespace SDEV240_GroupProject
             {
                 MessageBox.Show($"{txtMaterial.Text} has been successfully removed.");
                 txtMaterial.Text = string.Empty;
-                Refresh();
+                RefreshThisForm();
             }
         }
     }

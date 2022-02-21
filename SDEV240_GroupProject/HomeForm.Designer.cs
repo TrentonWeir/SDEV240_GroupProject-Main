@@ -47,6 +47,9 @@ namespace SDEV240_GroupProject
             this.ddlSearchType = new System.Windows.Forms.ComboBox();
             this.btnNavHome = new System.Windows.Forms.Button();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTotalText = new System.Windows.Forms.Label();
+            this.btnDeleteSearchItems = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvMaterialCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDTOBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -177,12 +180,46 @@ namespace SDEV240_GroupProject
             this.btnNavHome.Text = "Home";
             this.btnNavHome.UseVisualStyleBackColor = true;
             // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(849, 143);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(2, 19);
+            this.lblTotal.TabIndex = 10;
+            // 
+            // lblTotalText
+            // 
+            this.lblTotalText.AutoSize = true;
+            this.lblTotalText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalText.Location = new System.Drawing.Point(788, 143);
+            this.lblTotalText.Name = "lblTotalText";
+            this.lblTotalText.Size = new System.Drawing.Size(55, 17);
+            this.lblTotalText.TabIndex = 11;
+            this.lblTotalText.Text = "Total: ";
+            // 
+            // btnDeleteSearchItems
+            // 
+            this.btnDeleteSearchItems.Location = new System.Drawing.Point(391, 155);
+            this.btnDeleteSearchItems.Name = "btnDeleteSearchItems";
+            this.btnDeleteSearchItems.Size = new System.Drawing.Size(125, 23);
+            this.btnDeleteSearchItems.TabIndex = 12;
+            this.btnDeleteSearchItems.Text = "Delete Searched Items";
+            this.btnDeleteSearchItems.UseVisualStyleBackColor = true;
+            this.btnDeleteSearchItems.Click += new System.EventHandler(this.btnDeleteSearchItems_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(1056, 602);
+            this.Controls.Add(this.btnDeleteSearchItems);
+            this.Controls.Add(this.lblTotalText);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnNavHome);
             this.Controls.Add(this.ddlSearchType);
             this.Controls.Add(this.btnNavInput);
@@ -190,6 +227,7 @@ namespace SDEV240_GroupProject
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.gvMaterialCost);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "HomeForm";
             this.Text = "SDEV_240Project";
@@ -219,6 +257,9 @@ namespace SDEV240_GroupProject
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblTotalText;
+        private System.Windows.Forms.Button btnDeleteSearchItems;
     }
 }
 

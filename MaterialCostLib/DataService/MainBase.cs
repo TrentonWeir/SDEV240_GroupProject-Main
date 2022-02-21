@@ -41,6 +41,7 @@ namespace MaterialCostLib.DataService
             }
             catch(Exception ex)
             {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
                 return new List<MainDTO>();
             }
 
@@ -71,6 +72,19 @@ namespace MaterialCostLib.DataService
                         + Convert.ToString(item.Qty) + c + Convert.ToString(item.UnitCost) + c + Convert.ToString(item.Cost));
                     File.WriteAllText("../../../DataSource/MainDataBase.csv", Convert.ToString(csv));
                 }
+            }
+        }
+
+        public void DeleteGridSelectionBase(List<MainDTO> list)
+        {
+            try
+            {
+                File.Delete(MainDataBase);
+                InsertDataToMain(list);
+            }
+            catch(Exception ex)
+            {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
             }
         }
     }

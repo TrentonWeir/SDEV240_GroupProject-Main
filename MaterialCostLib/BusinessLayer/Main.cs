@@ -8,6 +8,7 @@ using MaterialCostLib.DataService;
 using MaterialCostLib.Models;
 using Microsoft.Office.Interop.Excel;
 using System.Globalization;
+using System.IO;
 
 namespace MaterialCostLib.BusinessLayer 
 {
@@ -66,7 +67,7 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch (Exception ex)
             {
-                var messageBox = ex;
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
             }
         }
         public void InsertIntoMaterial(string item)
@@ -78,7 +79,7 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch(Exception ex)
             {
-                var messageBox = ex;
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
             }
         }
         public void InsertIntoCategory(string item)
@@ -90,7 +91,7 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch (Exception ex)
             {
-                var messageBox = ex;
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
             }
         }
         public bool DeleteMaterial(string material)
@@ -105,6 +106,52 @@ namespace MaterialCostLib.BusinessLayer
             {
                 return false;
             }
+        }
+
+        public void DeleteGridSelection(string type, string searchItem)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(searchItem))
+                {
+                    var list = SelectDataFromMainCSV();
+                    if (type == "Id")
+                    {
+                        list.RemoveAll(x => x.Id == Convert.ToInt32(searchItem));
+                    }
+                    if (type == "Category")
+                    {
+                        list.RemoveAll(x => x.Category == searchItem);
+                    }
+                    if (type == "Item")
+                    {
+                        list.RemoveAll(x => x.Item == searchItem);
+                    }
+                    if (type == "Material")
+                    {
+                        list.RemoveAll(x => x.Material == searchItem);
+                    }
+                    if (type == "Description")
+                    {
+                        list.RemoveAll(x => x.Description == searchItem);
+                    }
+                    if (type == "Qty")
+                    {
+                        list.RemoveAll(x => x.Qty == float.Parse(searchItem));
+                    }
+                    if (type == "UnitCost")
+                    {
+                        list.RemoveAll(x => x.UnitCost == float.Parse(searchItem));
+                    }
+                    var mb = new MainBase();
+                    mb.DeleteGridSelectionBase(list);
+                }
+            }
+            catch(Exception ex)
+            {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+            }
+
         }
     }
 }

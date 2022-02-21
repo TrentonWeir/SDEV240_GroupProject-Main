@@ -21,12 +21,25 @@ namespace SDEV240_GroupProject
             btnSearch.ForeColor = Color.White;
             gvDataBind();
             SetComboBox();
-            
         }
         private void gvDataBind()
         {
-            gvMaterialCost.DataSource = CreateTableLayout();
+            gvMaterialCost.DataSource = string.Empty;
+            var list = CreateTableLayout();
+            gvMaterialCost.DataSource = list;
+            GetCurrentTotal(list);
+            
         }
+        private void GetCurrentTotal(List<MainDTO> list)
+        {
+            float total = 0;
+            foreach(var item in list)
+            {
+                total += float.Parse(item.Cost.Trim('$'));
+            }
+            lblTotal.Text = $"${total.ToString("f2")}";
+        }
+
         private List<MainDTO> CreateTableLayout()
         {
             try
@@ -35,7 +48,7 @@ namespace SDEV240_GroupProject
                 var list = main.SelectMainData();
                 return list;
             }
-            catch(Exception ex)
+            catch
             {
                 return new List<MainDTO>();
             }
@@ -45,32 +58,70 @@ namespace SDEV240_GroupProject
             var index = ddlSearchType.SelectedIndex;
             var list = CreateTableLayout();
             var newList = new List<MainDTO>();
-            if (index == 0)
+            gvMaterialCost.DataSource = list;
+            if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                foreach (var item in list)
+                try
                 {
-                    if (item.Id.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
-                        newList.Add(item);
+                    if (index == 0)
+                    {
+                        foreach (var item in list)
+                        {
+                            if (item.Id.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                                newList.Add(item);
+                        }
+                        gvMaterialCost.DataSource = newList;
+                    }
+                    if (index == 1)
+                    {
+                        foreach (var item in list)
+                        {
+                            if (item.Category.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                                newList.Add(item);
+                        }
+                        gvMaterialCost.DataSource = newList;
+                    }
+                    if (index == 2)
+                    {
+                        foreach (var item in list)
+                        {
+                            if (item.Item.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                                newList.Add(item);
+                        }
+                        gvMaterialCost.DataSource = newList;
+                    }
+                    if (index == 3)
+                    {
+                        foreach (var item in list)
+                        {
+                            if (item.Material.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                                newList.Add(item);
+                        }
+                        gvMaterialCost.DataSource = newList;
+                    }
+                    if (index == 3)
+                    {
+                        foreach (var item in list)
+                        {
+                            if (item.Description.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                                newList.Add(item);
+                        }
+                        gvMaterialCost.DataSource = newList;
+                    }
+                    if (index == 3)
+                    {
+                        foreach (var item in list)
+                        {
+                            if (item.UnitCost.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                                newList.Add(item);
+                        }
+                        gvMaterialCost.DataSource = newList;
+                    }
                 }
-                gvMaterialCost.DataSource = newList;
-            }
-            if (index == 1)
-            {
-                foreach (var item in list)
+                catch
                 {
-                    if (item.Material.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
-                        newList.Add(item);
+                    gvMaterialCost.DataSource = newList;
                 }
-                gvMaterialCost.DataSource = newList;
-            }
-            if (index == 2)
-            {
-                foreach (var item in list)
-                {
-                    if (item.Material.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
-                        newList.Add(item);
-                }
-                gvMaterialCost.DataSource = newList;
             }
         }
         public void SetComboBox()
@@ -87,7 +138,6 @@ namespace SDEV240_GroupProject
         private void btnNavInput_Click(object sender, EventArgs e)
         {
             InputForm inp = new InputForm();
-            this.Hide();
             inp.Show();
         }
 
@@ -115,6 +165,22 @@ namespace SDEV240_GroupProject
                 MessageBox.Show("Saved!");
             }
 
+        }
+
+        private void btnDeleteSearchItems_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(MessageBox.Show("Are you sure you wish to delete the searched items?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    var db = new Main();
+                    db.DeleteGridSelection(ddlSearchType.Text, textBox1.Text);
+                }
+            }
+            catch(Exception ex)
+            {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+            }
         }
     }
 }
