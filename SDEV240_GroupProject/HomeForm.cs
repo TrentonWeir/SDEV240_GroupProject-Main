@@ -182,5 +182,11 @@ namespace SDEV240_GroupProject
                 File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
             }
         }
+
+        private void btnSmallList_Click(object sender, EventArgs e)
+        {
+            SmallPricingBuild_NotSaved sm = new SmallPricingBuild_NotSaved();
+            sm.Show();
+        }
     }
 }

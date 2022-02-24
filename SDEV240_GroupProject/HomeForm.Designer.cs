@@ -30,6 +30,8 @@ namespace SDEV240_GroupProject
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gvMaterialCost = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +52,7 @@ namespace SDEV240_GroupProject
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblTotalText = new System.Windows.Forms.Label();
             this.btnDeleteSearchItems = new System.Windows.Forms.Button();
+            this.btnSmallList = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvMaterialCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDTOBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +60,14 @@ namespace SDEV240_GroupProject
             // gvMaterialCost
             // 
             this.gvMaterialCost.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvMaterialCost.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gvMaterialCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvMaterialCost.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -68,6 +79,14 @@ namespace SDEV240_GroupProject
             this.UnitCost,
             this.Cost});
             this.gvMaterialCost.DataSource = this.mainDTOBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvMaterialCost.DefaultCellStyle = dataGridViewCellStyle2;
             this.gvMaterialCost.Location = new System.Drawing.Point(83, 224);
             this.gvMaterialCost.Name = "gvMaterialCost";
             this.gvMaterialCost.Size = new System.Drawing.Size(883, 366);
@@ -211,12 +230,23 @@ namespace SDEV240_GroupProject
             this.btnDeleteSearchItems.UseVisualStyleBackColor = true;
             this.btnDeleteSearchItems.Click += new System.EventHandler(this.btnDeleteSearchItems_Click);
             // 
+            // btnSmallList
+            // 
+            this.btnSmallList.Location = new System.Drawing.Point(199, 12);
+            this.btnSmallList.Name = "btnSmallList";
+            this.btnSmallList.Size = new System.Drawing.Size(75, 23);
+            this.btnSmallList.TabIndex = 13;
+            this.btnSmallList.Text = "Small List";
+            this.btnSmallList.UseVisualStyleBackColor = true;
+            this.btnSmallList.Click += new System.EventHandler(this.btnSmallList_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(1056, 602);
+            this.Controls.Add(this.btnSmallList);
             this.Controls.Add(this.btnDeleteSearchItems);
             this.Controls.Add(this.lblTotalText);
             this.Controls.Add(this.lblTotal);
@@ -260,6 +290,7 @@ namespace SDEV240_GroupProject
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblTotalText;
         private System.Windows.Forms.Button btnDeleteSearchItems;
+        private System.Windows.Forms.Button btnSmallList;
     }
 }
 

@@ -98,6 +98,7 @@
     <Compile Include="DataService\CategoryDataBase.cs" />
     <Compile Include="DataService\MainBase.cs" />
     <Compile Include="DataService\MaterialsDataBase.cs" />
+    <Compile Include="Homework___DELETE_ONCE_USED\M06 Programming Exercise 10-7.cs" />
     <Compile Include="Models\CategoryDTO.cs" />
     <Compile Include="Models\MainDTO.cs" />
     <Compile Include="Models\MaterialDTO.cs" />

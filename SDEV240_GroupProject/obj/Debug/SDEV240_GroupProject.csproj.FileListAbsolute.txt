@@ -308,3 +308,4 @@ X:\CODE\Projects\SDEV240_GroupProject-Main\SDEV240_GroupProject\obj\Debug\SDEV24
 X:\CODE\Projects\SDEV240_GroupProject-Main\SDEV240_GroupProject\obj\Debug\SDEV240_GroupProject.csproj.CopyComplete
 X:\CODE\Projects\SDEV240_GroupProject-Main\SDEV240_GroupProject\obj\Debug\SDEV240_GroupProject.exe
 X:\CODE\Projects\SDEV240_GroupProject-Main\SDEV240_GroupProject\obj\Debug\SDEV240_GroupProject.pdb
+C:\Users\trenton.weir\source\repos\SDEV240_GroupProject-Main\SDEV240_GroupProject-Main\SDEV240_GroupProject\obj\Debug\SDEV240_GroupProject.SmallPricingBuild_NotSaved.resources
