@@ -19,6 +19,11 @@ namespace SDEV240_GroupProject
             btnSearch.Text = "Search";
             btnSearch.BackColor = Color.Blue;
             btnSearch.ForeColor = Color.White;
+            RefreshForm();
+            //btnClearAllData.Visible = false;
+        }
+        private void RefreshForm()
+        {
             gvDataBind();
             SetComboBox();
         }
@@ -28,36 +33,37 @@ namespace SDEV240_GroupProject
             var list = CreateTableLayout();
             gvMaterialCost.DataSource = list;
             GetCurrentTotal(list);
-            
+
         }
-        private void GetCurrentTotal(List<MainDTO> list)
+        private void GetCurrentTotal(List<SavedEstimatesDTO> list)
         {
-            float total = 0;
-            foreach(var item in list)
+            double total = 0;
+            foreach (var item in list)
             {
-                total += float.Parse(item.Cost.Trim('$'));
+                total += (item.Total);
             }
-            lblTotal.Text = $"${total.ToString("f2")}";
+            lblTotal.Text = $"${total.ToString("0.00")}";
         }
 
-        private List<MainDTO> CreateTableLayout()
+        private List<SavedEstimatesDTO> CreateTableLayout()
         {
             try
             {
                 var main = new Main();
-                var list = main.SelectMainData();
+                var list = main.SelectEstimates(); ;
                 return list;
             }
             catch
             {
-                return new List<MainDTO>();
+                return new List<SavedEstimatesDTO>();
             }
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var index = ddlSearchType.SelectedIndex;
-            var list = CreateTableLayout();
-            var newList = new List<MainDTO>();
+            var db = new Main();
+            var list = db.SelectEstimates();
+            var newList = new List<SavedEstimatesDTO>();
             gvMaterialCost.DataSource = list;
             if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
@@ -67,7 +73,7 @@ namespace SDEV240_GroupProject
                     {
                         foreach (var item in list)
                         {
-                            if (item.Id.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                            if (item.EstimateId.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
                                 newList.Add(item);
                         }
                         gvMaterialCost.DataSource = newList;
@@ -76,7 +82,7 @@ namespace SDEV240_GroupProject
                     {
                         foreach (var item in list)
                         {
-                            if (item.Category.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                            if (item.Description.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
                                 newList.Add(item);
                         }
                         gvMaterialCost.DataSource = newList;
@@ -85,7 +91,7 @@ namespace SDEV240_GroupProject
                     {
                         foreach (var item in list)
                         {
-                            if (item.Item.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                            if (item.Total.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
                                 newList.Add(item);
                         }
                         gvMaterialCost.DataSource = newList;
@@ -94,29 +100,12 @@ namespace SDEV240_GroupProject
                     {
                         foreach (var item in list)
                         {
-                            if (item.Material.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
+                            if (item.Date.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
                                 newList.Add(item);
                         }
                         gvMaterialCost.DataSource = newList;
                     }
-                    if (index == 3)
-                    {
-                        foreach (var item in list)
-                        {
-                            if (item.Description.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
-                                newList.Add(item);
-                        }
-                        gvMaterialCost.DataSource = newList;
-                    }
-                    if (index == 3)
-                    {
-                        foreach (var item in list)
-                        {
-                            if (item.UnitCost.ToString().ToUpper().Substring(0, textBox1.Text.Length) == textBox1.Text.ToUpper())
-                                newList.Add(item);
-                        }
-                        gvMaterialCost.DataSource = newList;
-                    }
+
                 }
                 catch
                 {
@@ -126,12 +115,11 @@ namespace SDEV240_GroupProject
         }
         public void SetComboBox()
         {
-            ddlSearchType.Items.Add("Id");
-            ddlSearchType.Items.Add("Category");
-            ddlSearchType.Items.Add("Item");
-            ddlSearchType.Items.Add("Materials");
+            ddlSearchType.Items.Add("EstimateId");
             ddlSearchType.Items.Add("Description");
-            ddlSearchType.Items.Add("UnitCost");
+            ddlSearchType.Items.Add("Total");
+            ddlSearchType.Items.Add("Date");
+
             ddlSearchType.SelectedIndex = 0;
         }
 
@@ -171,16 +159,45 @@ namespace SDEV240_GroupProject
         {
             try
             {
-                if(MessageBox.Show("Are you sure you wish to delete the searched items?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you wish to delete the searched items?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     var db = new Main();
                     db.DeleteGridSelection(ddlSearchType.Text, textBox1.Text);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
+        }
+
+        private void btnSmallList_Click(object sender, EventArgs e)
+        {
+            SmallPricingBuild_NotSaved form = new SmallPricingBuild_NotSaved();
+            form.Show();
+        }
+       
+        //Admin use only for clearing all databases after testing. Btn hidden for user.
+        private void btnClearAllData_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("../../../DataSource/MainDataBase.csv"))
+            {
+                File.Delete("../../../DataSource/MainDataBase.csv");
+            }
+            if (File.Exists("../../../DataSource/MaterialDataBase.csv"))
+            {
+                File.Delete("../../../DataSource/MaterialDataBase.csv");
+            }
+            if (File.Exists("../../../DataSource/CategoryDataBase.csv"))
+            {
+                File.Delete("../../../DataSource/CategoryDataBase.csv");
+            }
+            gvDataBind();
+        }
+
+        private void btnRefreshGrid_Click(object sender, EventArgs e)
+        {
+            RefreshForm();
         }
     }
 }

@@ -14,12 +14,13 @@ namespace SDEV240_GroupProject
 {
     public partial class SmallPricingBuild_NotSaved : Form
     {
+        public List<MainDTO> Main_List = new List<MainDTO>();
         public SmallPricingBuild_NotSaved()
         {
             InitializeComponent();
             gvMaterialCost.DataSource = string.Empty;
             SetComboBox();
-            TestConditions(true);
+            TestConditions(true);//change true for TestData
         }
         private void TestConditions(bool condition = false)
         {
@@ -27,10 +28,10 @@ namespace SDEV240_GroupProject
             {
                 txtDescription.Text = "Description";
                 txtItem.Text = "Item";
-                txtQty.Text = "Qty";
+                txtQty.Text = "1";
                 txtUnitCost.Text = "1.1";
-                ddlCategory.SelectedIndex = 1;
-                ddlMaterial.SelectedIndex = 1;
+                ddlCategory.Text = "new Category";
+                ddlMaterial.Text = "New Material";
             }
         }
         private void SetComboBox()
@@ -56,7 +57,7 @@ namespace SDEV240_GroupProject
         private void AddDataToGrid()
         {
             try
-            {
+            {  
                 var id = gvMaterialCost.Rows.Count + 1;
                 double cost = Convert.ToDouble(txtUnitCost.Text) * Convert.ToDouble(txtQty.Text);
                 List<MainDTO> list = GridToList();
@@ -72,11 +73,13 @@ namespace SDEV240_GroupProject
                     Cost = cost.ToString("0.00"),
                 });
                 gvMaterialCost.DataSource = list;
+                Main_List = list;
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Make sure Qty and Unit Cost contain no letters or special characters! ie.($,*&^%#@)" + ex.ToString());
+                MessageBox.Show("Make sure Qty and Unit Cost contain no letters or special characters! ie.($,*&^%#@)" + ex.Message);
             }
+            GetTotal();
         }
         private List<MainDTO> CreateTableLayout()
         {
@@ -94,7 +97,7 @@ namespace SDEV240_GroupProject
             try
             {
                 Main db = new Main();
-                db.InsertDataToMain(list);
+                db.InsertEstimateDataToMain(list);
                 return string.Empty;
             }
             catch(Exception ex)
@@ -105,106 +108,102 @@ namespace SDEV240_GroupProject
         private List<MainDTO> GridToList()
         {
             List<MainDTO> list = new List<MainDTO>();
-            foreach (DataGridViewRow row in gvMaterialCost.Rows)
+            if (gvMaterialCost.Rows.Count > 0)
             {
-                list.Add(new MainDTO()
+                foreach (DataGridViewRow row in gvMaterialCost.Rows)
                 {
-                    Id = (int)row.Cells[0].Value,
-                    Category = (string)row.Cells[1].Value,
-                    Item = (string)row.Cells[2].Value,
-                    Material = (string)row.Cells[3].Value,
-                    Description = (string)row.Cells[4].Value,
-                    Qty = (float)row.Cells[5].Value,
-                    UnitCost = (float)row.Cells[6].Value,
-                    Cost = (string)row.Cells[7].Value,
-                });
+                    list.Add(new MainDTO()
+                    {
+                        Id = (int)row.Cells[0].Value,
+                        Category = (string)row.Cells[1].Value,
+                        Item = (string)row.Cells[2].Value,
+                        Material = (string)row.Cells[3].Value,
+                        Description = (string)row.Cells[4].Value,
+                        Qty = (float)row.Cells[5].Value,
+                        UnitCost = (float)row.Cells[6].Value,
+                        Cost = (string)row.Cells[7].Value,
+                    });
+                }
             }
             return list;
         }
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void GetTotal()
         {
+            var total = 0.00;
+            foreach(DataGridViewRow row in gvMaterialCost.Rows)
+            {
+                total += Convert.ToDouble(row.Cells[7].Value);
+            }
+            lblTotal.Text = $"${total.ToString("0.00")}";
+        }
+        private void FilterGrid()
+        {
+            
             var index = ddlSearchFilter.SelectedIndex;
-            var list = CreateTableLayout();
-            var newList = new List<MainDTO>();
-            gvMaterialCost.DataSource = list;
-            if (!string.IsNullOrWhiteSpace(txtUnitCost.Text))
+            var list = new List<MainDTO>();
+            
+
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 try
                 {
                     if (index == 0)
-                    {
-                        foreach (var item in list)
-                        {
-                            if (item.Id.ToString().ToUpper().Substring(0, txtUnitCost.Text.Length) == txtUnitCost.Text.ToUpper())
-                                newList.Add(item);
-                        }
-                        gvMaterialCost.DataSource = newList;
-                    }
+                        list = Main_List.Where(x => x.Id == Convert.ToInt32(txtSearch.Text)).ToList();
                     if (index == 1)
-                    {
-                        foreach (var item in list)
-                        {
-                            if (item.Category.ToString().ToUpper().Substring(0, txtUnitCost.Text.Length) == txtUnitCost.Text.ToUpper())
-                                newList.Add(item);
-                        }
-                        gvMaterialCost.DataSource = newList;
-                    }
+                        list = Main_List.Where(x => x.Category.ToLower() == txtSearch.Text).ToList();
                     if (index == 2)
-                    {
-                        foreach (var item in list)
-                        {
-                            if (item.Item.ToString().ToUpper().Substring(0, txtUnitCost.Text.Length) == txtUnitCost.Text.ToUpper())
-                                newList.Add(item);
-                        }
-                        gvMaterialCost.DataSource = newList;
-                    }
+                        list = Main_List.Where(x => x.Item.ToLower() == txtSearch.Text).ToList();
                     if (index == 3)
-                    {
-                        foreach (var item in list)
-                        {
-                            if (item.Material.ToString().ToUpper().Substring(0, txtUnitCost.Text.Length) == txtUnitCost.Text.ToUpper())
-                                newList.Add(item);
-                        }
-                        gvMaterialCost.DataSource = newList;
-                    }
-                    if (index == 3)
-                    {
-                        foreach (var item in list)
-                        {
-                            if (item.Description.ToString().ToUpper().Substring(0, txtUnitCost.Text.Length) == txtUnitCost.Text.ToUpper())
-                                newList.Add(item);
-                        }
-                        gvMaterialCost.DataSource = newList;
-                    }
-                    if (index == 3)
-                    {
-                        foreach (var item in list)
-                        {
-                            if (item.UnitCost.ToString().ToUpper().Substring(0, txtUnitCost.Text.Length) == txtUnitCost.Text.ToUpper())
-                                newList.Add(item);
-                        }
-                        gvMaterialCost.DataSource = newList;
-                    }
+                        list = Main_List.Where(x => x.Material.ToLower() == (txtSearch.Text)).ToList();
+                    if (index == 4)
+                        list = Main_List.Where(x => x.Description.ToLower() == (txtSearch.Text)).ToList();
+                    if (index == 5)
+                        list = Main_List.Where(x => x.Qty == Convert.ToInt32(txtSearch.Text)).ToList();
+                    if (index == 6)
+                        list = Main_List.Where(x => x.UnitCost == float.Parse(txtSearch.Text)).ToList();
+                    if (index == 7)
+                        list = Main_List.Where(x => x.Cost == (txtSearch.Text)).ToList();
+                    if (list.Count > 0)
+                        gvMaterialCost.DataSource = list;
+                    else
+                        gvMaterialCost.DataSource = Main_List;
                 }
                 catch
                 {
-                    gvMaterialCost.DataSource = newList;
+                    gvMaterialCost.DataSource = Main_List;
+                    GetTotal();
                 }
 
             }
+            else
+            {
+                gvMaterialCost.DataSource = Main_List;
+                GetTotal();
+            }
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            FilterGrid();
+            GetTotal();
         }
 
         private void btnSaveToMainList_Click(object sender, EventArgs e)
         {
             var list = GridToList();
-            var processed = SaveToMainDataBase(list);
-            if (string.IsNullOrEmpty(processed))
-                MessageBox.Show(processed);
+            SaveToMainDataBase(list);
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            var list = GridToList();
+            foreach (DataGridViewRow row in gvMaterialCost.Rows)
+            {
+                if (row.Index > 0 && row.Visible == true)
+                {
+                    list.RemoveAll(x => x.Id == Convert.ToInt32(row.Cells[0].Value)-1);
+                }
+            }
         }
 
         private void btnPrintCSV_Click(object sender, EventArgs e)
@@ -220,7 +219,7 @@ namespace SDEV240_GroupProject
 
         private void ddlSearchFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            FilterGrid();
         }
 
         private void btnSaveDataToGrid_Click(object sender, EventArgs e)
@@ -230,6 +229,7 @@ namespace SDEV240_GroupProject
 
         private void btnClearGrid_Click(object sender, EventArgs e)
         {
+            lblTotal.Text = "Total: $00.00";
             gvMaterialCost.DataSource = string.Empty;
         }
     }

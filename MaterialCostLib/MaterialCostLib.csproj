@@ -103,6 +103,7 @@
     <Compile Include="Models\CategoryDTO.cs" />
     <Compile Include="Models\MainDTO.cs" />
     <Compile Include="Models\MaterialDTO.cs" />
+    <Compile Include="Models\SavedEstimatesDTO.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.6.1.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.6.1.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

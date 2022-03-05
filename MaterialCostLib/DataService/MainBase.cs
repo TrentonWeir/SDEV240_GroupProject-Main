@@ -41,8 +41,34 @@ namespace MaterialCostLib.DataService
             }
             catch(Exception ex)
             {
-                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
                 return new List<MainDTO>();
+            }
+
+        }
+        public List<SavedEstimatesDTO> SelectEstimatesBase()
+        {
+            try
+            {
+                var list = new List<SavedEstimatesDTO>();
+                var lines = File.ReadAllLines(MainDataBase);
+                foreach (var line in lines)
+                {
+                    var newline = line.Split(',');
+                    list.Add(new SavedEstimatesDTO
+                    {
+                        EstimateId = Convert.ToInt32(newline[0]),
+                        Description = Convert.ToString(newline[1]),
+                        Total = Convert.ToDouble(newline[2]),
+                        Date = Convert.ToDateTime(newline[3]),
+                    });
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
+                return new List<SavedEstimatesDTO>();
             }
 
         }
@@ -51,28 +77,73 @@ namespace MaterialCostLib.DataService
             try
             {
                 var theData = File.ReadAllLines(MainDataBase);
-                var count = theData.Count();
-                var c = ",";
+                var count = theData.Count()+1;
+                var c = "|";
                 var csv = new StringBuilder();
                 foreach (var item in list)
                 {
                     csv.AppendLine(Convert.ToString(count)+ c+Convert.ToString(item.Category) + c + Convert.ToString(item.Item) + c + Convert.ToString(item.Material) + c + Convert.ToString(item.Description) + c
                         + Convert.ToString(item.Qty) + c + Convert.ToString(item.UnitCost) + c + Convert.ToString(item.Cost));
-                    File.AppendAllText("../../../DataSource/MainDataBase.csv", csv.ToString());
+                    count++;
                 }
+                File.AppendAllText("../../../DataSource/MainDataBase.csv", csv.ToString());
+
             }
             catch
             {
                 var count = 1;
-                var c = ",";
+                var c = "|";
                 var csv = new StringBuilder();
                 foreach (var item in list)
                 {
                     csv.AppendLine(Convert.ToString(count) + c + Convert.ToString(item.Category) + c + Convert.ToString(item.Item) + c + Convert.ToString(item.Material) + c + Convert.ToString(item.Description) + c
                         + Convert.ToString(item.Qty) + c + Convert.ToString(item.UnitCost) + c + Convert.ToString(item.Cost));
-                    File.WriteAllText("../../../DataSource/MainDataBase.csv", Convert.ToString(csv));
+                    count++;
                 }
+                File.AppendAllText("../../../DataSource/MainDataBase.csv", csv.ToString());
+
             }
+        }
+
+        internal void InsertEstimateDataToMainBase(List<MainDTO> list)
+        {
+            try
+            {
+                var theData = File.ReadAllLines(MainDataBase);
+                var count = theData.Count()+1;
+                var c = "|";
+                var csv = new StringBuilder();
+                double total = 0.00;
+                string str = string.Empty;
+                foreach (var item in list)
+                {
+
+                    str += "~"+Convert.ToString(item.Id) + c + Convert.ToString(item.Category) + c + Convert.ToString(item.Item) + c + Convert.ToString(item.Material) + c + Convert.ToString(item.Description) + c
+                        + Convert.ToString(item.Qty) + c + Convert.ToString(item.UnitCost) + c + Convert.ToString(item.Cost);
+                    total += Convert.ToDouble(item.Cost.Trim('$'));
+                }
+                csv.AppendLine($"{count},{str},{total},{DateTime.Now}");
+                File.AppendAllText("../../../DataSource/MainDataBase.csv", csv.ToString());
+            }
+            catch
+            {
+                var count = 1;
+                var c = "|";
+                var csv = new StringBuilder();
+                double total = 0.00;
+                string str = string.Empty;
+                foreach (var item in list)
+                {
+
+                    str += "~"+Convert.ToString(item.Id) + c + Convert.ToString(item.Category) + c + Convert.ToString(item.Item) + c + Convert.ToString(item.Material) + c + Convert.ToString(item.Description) + c
+                        + Convert.ToString(item.Qty) + c + Convert.ToString(item.UnitCost) + c + Convert.ToString(item.Cost) + "|";
+                    total += Convert.ToDouble(item.Cost.Trim('$'));
+                   
+                }
+                csv.AppendLine($"{count},{str},{total},{DateTime.Now}");
+                File.AppendAllText("../../../DataSource/MainDataBase.csv", csv.ToString());
+            }
+
         }
 
         public void DeleteGridSelectionBase(List<MainDTO> list)
@@ -84,7 +155,7 @@ namespace MaterialCostLib.DataService
             }
             catch(Exception ex)
             {
-                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
         }
     }

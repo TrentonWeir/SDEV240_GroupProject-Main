@@ -100,6 +100,8 @@ namespace SDEV240_GroupProject
             this.gvMaterialCost.DefaultCellStyle = dataGridViewCellStyle2;
             this.gvMaterialCost.Location = new System.Drawing.Point(81, 148);
             this.gvMaterialCost.Name = "gvMaterialCost";
+            this.gvMaterialCost.ReadOnly = true;
+            this.gvMaterialCost.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvMaterialCost.Size = new System.Drawing.Size(841, 357);
             this.gvMaterialCost.TabIndex = 1;
             // 
@@ -108,48 +110,56 @@ namespace SDEV240_GroupProject
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // categoryDataGridViewTextBoxColumn
             // 
             this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
             this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
             this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // itemDataGridViewTextBoxColumn
             // 
             this.itemDataGridViewTextBoxColumn.DataPropertyName = "Item";
             this.itemDataGridViewTextBoxColumn.HeaderText = "Item";
             this.itemDataGridViewTextBoxColumn.Name = "itemDataGridViewTextBoxColumn";
+            this.itemDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // materialDataGridViewTextBoxColumn
             // 
             this.materialDataGridViewTextBoxColumn.DataPropertyName = "Material";
             this.materialDataGridViewTextBoxColumn.HeaderText = "Material";
             this.materialDataGridViewTextBoxColumn.Name = "materialDataGridViewTextBoxColumn";
+            this.materialDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // descriptionDataGridViewTextBoxColumn
             // 
             this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
             this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // qtyDataGridViewTextBoxColumn
             // 
             this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
             this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
             this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
+            this.qtyDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // unitCostDataGridViewTextBoxColumn
             // 
             this.unitCostDataGridViewTextBoxColumn.DataPropertyName = "UnitCost";
             this.unitCostDataGridViewTextBoxColumn.HeaderText = "UnitCost";
             this.unitCostDataGridViewTextBoxColumn.Name = "unitCostDataGridViewTextBoxColumn";
+            this.unitCostDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // costDataGridViewTextBoxColumn
             // 
             this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
             this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
             this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            this.costDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // gvSmallListBinding
             // 
@@ -164,7 +174,7 @@ namespace SDEV240_GroupProject
             // 
             // btnSaveToMainList
             // 
-            this.btnSaveToMainList.Location = new System.Drawing.Point(404, 98);
+            this.btnSaveToMainList.Location = new System.Drawing.Point(392, 100);
             this.btnSaveToMainList.Name = "btnSaveToMainList";
             this.btnSaveToMainList.Size = new System.Drawing.Size(111, 23);
             this.btnSaveToMainList.TabIndex = 3;
@@ -184,7 +194,7 @@ namespace SDEV240_GroupProject
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(521, 98);
+            this.btnDelete.Location = new System.Drawing.Point(81, 121);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 5;
@@ -212,7 +222,7 @@ namespace SDEV240_GroupProject
             // 
             // btnPrintCSV
             // 
-            this.btnPrintCSV.Location = new System.Drawing.Point(618, 98);
+            this.btnPrintCSV.Location = new System.Drawing.Point(509, 100);
             this.btnPrintCSV.Name = "btnPrintCSV";
             this.btnPrintCSV.Size = new System.Drawing.Size(75, 23);
             this.btnPrintCSV.TabIndex = 8;
@@ -222,7 +232,7 @@ namespace SDEV240_GroupProject
             // 
             // btnSaveText
             // 
-            this.btnSaveText.Location = new System.Drawing.Point(699, 98);
+            this.btnSaveText.Location = new System.Drawing.Point(593, 100);
             this.btnSaveText.Name = "btnSaveText";
             this.btnSaveText.Size = new System.Drawing.Size(75, 23);
             this.btnSaveText.TabIndex = 9;

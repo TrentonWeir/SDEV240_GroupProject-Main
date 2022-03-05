@@ -20,15 +20,24 @@ namespace SDEV240_GroupProject
         public InputForm()
         {
             InitializeComponent();
+            btnNewCostRecord.Visible = false;
+            txtItem.Visible = false;
+            lblItem.Visible = false;
+            txtDescription.Visible = false;
+            lblDescription.Visible = false;
+            txtQty.Visible = false;
+            lblQty.Visible = false;
+            txtUnitCost.Visible = false;
+            lblUnitCost.Visible = false;
         }
         private void InputFunction()
         {
            //File.Delete("../../../DataSource/MainDataBase.csv");//Used for deleteing everthing inTests
             MainDTO item = new MainDTO();
             item.Category = ddlCategoryInput.Text;
-            item.Item = textBox1.Text;
+            item.Item = txtItem.Text;
             item.Material = ddlMaterialInput.Text;
-            item.Description = textBox3.Text;
+            item.Description = txtDescription.Text;
             item.Qty = Convert.ToInt32(txtQty.Value);
             item.UnitCost = float.Parse(txtUnitCost.Text);
             item.Cost = (item.UnitCost * item.Qty).ToString("C", CultureInfo.CurrentCulture);

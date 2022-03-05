@@ -51,7 +51,7 @@ namespace MaterialCostLib.DataService
             }
             catch (Exception ex)
             {
-                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
                 return new List<CategoryDTO>();
             }
 

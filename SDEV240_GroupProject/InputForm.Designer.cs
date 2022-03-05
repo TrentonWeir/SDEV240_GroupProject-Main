@@ -31,12 +31,12 @@ namespace SDEV240_GroupProject
         {
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblItem = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtItem = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.lblQty = new System.Windows.Forms.Label();
+            this.lblUnitCost = new System.Windows.Forms.Label();
             this.btnNewCostRecord = new System.Windows.Forms.Button();
             this.ddlCategoryInput = new System.Windows.Forms.ComboBox();
             this.ddlMaterialInput = new System.Windows.Forms.ComboBox();
@@ -71,12 +71,12 @@ namespace SDEV240_GroupProject
             this.lblItem.TabIndex = 3;
             this.lblItem.Text = "Item";
             // 
-            // textBox1
+            // txtItem
             // 
-            this.textBox1.Location = new System.Drawing.Point(143, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtItem.Location = new System.Drawing.Point(143, 59);
+            this.txtItem.Name = "txtItem";
+            this.txtItem.Size = new System.Drawing.Size(100, 20);
+            this.txtItem.TabIndex = 2;
             // 
             // label2
             // 
@@ -87,39 +87,39 @@ namespace SDEV240_GroupProject
             this.label2.TabIndex = 5;
             this.label2.Text = "Material";
             // 
-            // label3
+            // lblDescription
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(352, 43);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Description";
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(352, 43);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(60, 13);
+            this.lblDescription.TabIndex = 7;
+            this.lblDescription.Text = "Description";
             // 
-            // textBox3
+            // txtDescription
             // 
-            this.textBox3.Location = new System.Drawing.Point(355, 59);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 6;
+            this.txtDescription.Location = new System.Drawing.Point(355, 59);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(100, 20);
+            this.txtDescription.TabIndex = 6;
             // 
-            // label4
+            // lblQty
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(458, 43);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Quantity";
+            this.lblQty.AutoSize = true;
+            this.lblQty.Location = new System.Drawing.Point(458, 43);
+            this.lblQty.Name = "lblQty";
+            this.lblQty.Size = new System.Drawing.Size(46, 13);
+            this.lblQty.TabIndex = 9;
+            this.lblQty.Text = "Quantity";
             // 
-            // label5
+            // lblUnitCost
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(564, 43);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Unit Cost";
+            this.lblUnitCost.AutoSize = true;
+            this.lblUnitCost.Location = new System.Drawing.Point(564, 43);
+            this.lblUnitCost.Name = "lblUnitCost";
+            this.lblUnitCost.Size = new System.Drawing.Size(50, 13);
+            this.lblUnitCost.TabIndex = 11;
+            this.lblUnitCost.Text = "Unit Cost";
             // 
             // btnNewCostRecord
             // 
@@ -250,13 +250,13 @@ namespace SDEV240_GroupProject
             this.Controls.Add(this.ddlMaterialInput);
             this.Controls.Add(this.ddlCategoryInput);
             this.Controls.Add(this.btnNewCostRecord);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.lblUnitCost);
+            this.Controls.Add(this.lblQty);
+            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblItem);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtItem);
             this.Controls.Add(this.lblCategory);
             this.Name = "InputForm";
             this.Text = "Form1";
@@ -270,12 +270,12 @@ namespace SDEV240_GroupProject
         #endregion
         private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Label lblItem;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtItem;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label lblQty;
+        private System.Windows.Forms.Label lblUnitCost;
         private System.Windows.Forms.Button btnNewCostRecord;
         private System.Windows.Forms.ComboBox ddlCategoryInput;
         private System.Windows.Forms.ComboBox ddlMaterialInput;

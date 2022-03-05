@@ -30,16 +30,9 @@ namespace SDEV240_GroupProject
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.gvMaterialCost = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mainDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSaveGrid = new System.Windows.Forms.Button();
@@ -50,80 +43,20 @@ namespace SDEV240_GroupProject
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblTotalText = new System.Windows.Forms.Label();
             this.btnDeleteSearchItems = new System.Windows.Forms.Button();
+            this.btnSmallList = new System.Windows.Forms.Button();
+            this.btnClearAllData = new System.Windows.Forms.Button();
+            this.btnRefreshGrid = new System.Windows.Forms.Button();
+            this.gvMaterialCost = new System.Windows.Forms.DataGridView();
+            this.savedEstimatesDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estimateIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvMaterialCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.savedEstimatesDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDTOBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gvMaterialCost
-            // 
-            this.gvMaterialCost.AutoGenerateColumns = false;
-            this.gvMaterialCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvMaterialCost.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.Category,
-            this.Item,
-            this.materialDataGridViewTextBoxColumn,
-            this.Description,
-            this.Qty,
-            this.UnitCost,
-            this.Cost});
-            this.gvMaterialCost.DataSource = this.mainDTOBindingSource;
-            this.gvMaterialCost.Location = new System.Drawing.Point(83, 224);
-            this.gvMaterialCost.Name = "gvMaterialCost";
-            this.gvMaterialCost.Size = new System.Drawing.Size(883, 366);
-            this.gvMaterialCost.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            // 
-            // Item
-            // 
-            this.Item.DataPropertyName = "Item";
-            this.Item.HeaderText = "Item";
-            this.Item.Name = "Item";
-            // 
-            // materialDataGridViewTextBoxColumn
-            // 
-            this.materialDataGridViewTextBoxColumn.DataPropertyName = "Material";
-            this.materialDataGridViewTextBoxColumn.HeaderText = "Material";
-            this.materialDataGridViewTextBoxColumn.Name = "materialDataGridViewTextBoxColumn";
-            // 
-            // Description
-            // 
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            // 
-            // Qty
-            // 
-            this.Qty.DataPropertyName = "Qty";
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            // 
-            // UnitCost
-            // 
-            this.UnitCost.DataPropertyName = "UnitCost";
-            this.UnitCost.HeaderText = "UnitCost";
-            this.UnitCost.Name = "UnitCost";
-            // 
-            // Cost
-            // 
-            this.Cost.DataPropertyName = "Cost";
-            this.Cost.HeaderText = "Cost";
-            this.Cost.Name = "Cost";
-            // 
-            // mainDTOBindingSource
-            // 
-            this.mainDTOBindingSource.DataSource = typeof(MaterialCostLib.Models.MainDTO);
             // 
             // textBox1
             // 
@@ -157,9 +90,9 @@ namespace SDEV240_GroupProject
             // 
             this.btnNavInput.Location = new System.Drawing.Point(118, 12);
             this.btnNavInput.Name = "btnNavInput";
-            this.btnNavInput.Size = new System.Drawing.Size(75, 23);
+            this.btnNavInput.Size = new System.Drawing.Size(102, 23);
             this.btnNavInput.TabIndex = 4;
-            this.btnNavInput.Text = "InputForm";
+            this.btnNavInput.Text = "Adjust Drop Down";
             this.btnNavInput.UseVisualStyleBackColor = true;
             this.btnNavInput.Click += new System.EventHandler(this.btnNavInput_Click);
             // 
@@ -211,12 +144,123 @@ namespace SDEV240_GroupProject
             this.btnDeleteSearchItems.UseVisualStyleBackColor = true;
             this.btnDeleteSearchItems.Click += new System.EventHandler(this.btnDeleteSearchItems_Click);
             // 
+            // btnSmallList
+            // 
+            this.btnSmallList.Location = new System.Drawing.Point(226, 12);
+            this.btnSmallList.Name = "btnSmallList";
+            this.btnSmallList.Size = new System.Drawing.Size(99, 23);
+            this.btnSmallList.TabIndex = 13;
+            this.btnSmallList.Text = "Estimate Builder";
+            this.btnSmallList.UseVisualStyleBackColor = true;
+            this.btnSmallList.Click += new System.EventHandler(this.btnSmallList_Click);
+            // 
+            // btnClearAllData
+            // 
+            this.btnClearAllData.Location = new System.Drawing.Point(817, 12);
+            this.btnClearAllData.Name = "btnClearAllData";
+            this.btnClearAllData.Size = new System.Drawing.Size(113, 23);
+            this.btnClearAllData.TabIndex = 14;
+            this.btnClearAllData.Text = "Clear All Data";
+            this.btnClearAllData.UseVisualStyleBackColor = true;
+            this.btnClearAllData.Click += new System.EventHandler(this.btnClearAllData_Click);
+            // 
+            // btnRefreshGrid
+            // 
+            this.btnRefreshGrid.Location = new System.Drawing.Point(736, 12);
+            this.btnRefreshGrid.Name = "btnRefreshGrid";
+            this.btnRefreshGrid.Size = new System.Drawing.Size(75, 23);
+            this.btnRefreshGrid.TabIndex = 15;
+            this.btnRefreshGrid.Text = "Refresh";
+            this.btnRefreshGrid.UseVisualStyleBackColor = true;
+            this.btnRefreshGrid.Click += new System.EventHandler(this.btnRefreshGrid_Click);
+            // 
+            // gvMaterialCost
+            // 
+            this.gvMaterialCost.AutoGenerateColumns = false;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvMaterialCost.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.gvMaterialCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvMaterialCost.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.estimateIdDataGridViewTextBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
+            this.totalDataGridViewTextBoxColumn,
+            this.dateDataGridViewTextBoxColumn});
+            this.gvMaterialCost.DataSource = this.savedEstimatesDTOBindingSource;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvMaterialCost.DefaultCellStyle = dataGridViewCellStyle5;
+            this.gvMaterialCost.Location = new System.Drawing.Point(83, 224);
+            this.gvMaterialCost.Name = "gvMaterialCost";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvMaterialCost.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.gvMaterialCost.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gvMaterialCost.Size = new System.Drawing.Size(883, 366);
+            this.gvMaterialCost.TabIndex = 0;
+            // 
+            // savedEstimatesDTOBindingSource
+            // 
+            this.savedEstimatesDTOBindingSource.DataSource = typeof(MaterialCostLib.Models.SavedEstimatesDTO);
+            // 
+            // mainDTOBindingSource
+            // 
+            this.mainDTOBindingSource.DataSource = typeof(MaterialCostLib.Models.MainDTO);
+            // 
+            // estimateIdDataGridViewTextBoxColumn
+            // 
+            this.estimateIdDataGridViewTextBoxColumn.DataPropertyName = "EstimateId";
+            this.estimateIdDataGridViewTextBoxColumn.HeaderText = "EstimateId";
+            this.estimateIdDataGridViewTextBoxColumn.Name = "estimateIdDataGridViewTextBoxColumn";
+            this.estimateIdDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.MaxInputLength = 300000;
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.descriptionDataGridViewTextBoxColumn.Width = 540;
+            // 
+            // totalDataGridViewTextBoxColumn
+            // 
+            this.totalDataGridViewTextBoxColumn.DataPropertyName = "Total";
+            this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
+            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
+            this.totalDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.Width = 150;
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(1056, 602);
+            this.Controls.Add(this.btnRefreshGrid);
+            this.Controls.Add(this.btnClearAllData);
+            this.Controls.Add(this.btnSmallList);
             this.Controls.Add(this.btnDeleteSearchItems);
             this.Controls.Add(this.lblTotalText);
             this.Controls.Add(this.lblTotal);
@@ -232,6 +276,7 @@ namespace SDEV240_GroupProject
             this.Name = "HomeForm";
             this.Text = "SDEV_240Project";
             ((System.ComponentModel.ISupportInitialize)(this.gvMaterialCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.savedEstimatesDTOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -239,8 +284,6 @@ namespace SDEV240_GroupProject
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView gvMaterialCost;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnSaveGrid;
@@ -248,18 +291,19 @@ namespace SDEV240_GroupProject
         private System.Windows.Forms.BindingSource mainDTOBindingSource;
         private System.Windows.Forms.ComboBox ddlSearchType;
         private System.Windows.Forms.Button btnNavHome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Item;
-        private System.Windows.Forms.DataGridViewTextBoxColumn materialDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblTotalText;
         private System.Windows.Forms.Button btnDeleteSearchItems;
+        private System.Windows.Forms.Button btnSmallList;
+        private System.Windows.Forms.Button btnClearAllData;
+        private System.Windows.Forms.Button btnRefreshGrid;
+        private System.Windows.Forms.BindingSource savedEstimatesDTOBindingSource;
+        private System.Windows.Forms.DataGridView gvMaterialCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estimateIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
     }
 }
 

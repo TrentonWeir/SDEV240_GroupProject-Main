@@ -31,6 +31,20 @@ namespace MaterialCostLib.BusinessLayer
                 return new List<MainDTO>();
             }
         }
+        public List<SavedEstimatesDTO> SelectEstimates()
+        {
+            try
+            {
+                var db = new MainBase();
+                return db.SelectEstimatesBase();
+            }
+            catch (Exception ex)
+            {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
+                return new List<SavedEstimatesDTO>();
+            }
+
+        }
         public List<MaterialDTO> SelectMaterialData()
         {
             try
@@ -67,7 +81,20 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch (Exception ex)
             {
-                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
+            }
+        }
+        public void InsertEstimateDataToMain(List<MainDTO> list)
+        {
+            try
+            {
+                var db = new MainBase();
+                db.InsertEstimateDataToMainBase(list);
+
+            }
+            catch (Exception ex)
+            {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
         }
         public void InsertIntoMaterial(string item)
@@ -79,7 +106,7 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch(Exception ex)
             {
-                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
         }
         public void InsertIntoCategory(string item)
@@ -91,7 +118,7 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch (Exception ex)
             {
-                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
         }
         public bool DeleteMaterial(string material)
@@ -149,7 +176,7 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch(Exception ex)
             {
-                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.ToString());
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
 
         }
