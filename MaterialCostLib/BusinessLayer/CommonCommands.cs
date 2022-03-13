@@ -1,11 +1,9 @@
-﻿using System;
+﻿using MaterialCostLib.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialCostLib.Models;
 
 namespace MaterialCostLib.BusinessLayer
 {
@@ -15,7 +13,7 @@ namespace MaterialCostLib.BusinessLayer
         {
             try
             {
-                
+
                 SaveFileDialog save = new SaveFileDialog();
                 save.Filter = "CSV File|*.csv";
                 save.Title = "Save CSV File";
@@ -33,11 +31,11 @@ namespace MaterialCostLib.BusinessLayer
                     }
                     csv.AppendLine($",,,,,,Total cost is:, {total}");
                     File.AppendAllText(save.FileName, csv.ToString());
-                    
+
                 }
                 return $"{save.FileName} was successfully saved!";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return $"{ex.Message}";
             }
@@ -66,7 +64,7 @@ namespace MaterialCostLib.BusinessLayer
                 }
                 return $"{save.FileName} was successfully saved!";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return $"{ex.Message}";
             }

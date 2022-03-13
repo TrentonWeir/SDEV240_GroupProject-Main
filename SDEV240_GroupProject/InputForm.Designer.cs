@@ -129,7 +129,6 @@ namespace SDEV240_GroupProject
             this.btnNewCostRecord.TabIndex = 14;
             this.btnNewCostRecord.Text = "Save this to List";
             this.btnNewCostRecord.UseVisualStyleBackColor = true;
-            this.btnNewCostRecord.Click += new System.EventHandler(this.btnNewCostRecord_Click);
             // 
             // ddlCategoryInput
             // 
@@ -207,6 +206,7 @@ namespace SDEV240_GroupProject
             this.btnDeleteCategory.TabIndex = 23;
             this.btnDeleteCategory.Text = "Delete";
             this.btnDeleteCategory.UseVisualStyleBackColor = true;
+            this.btnDeleteCategory.Click += new System.EventHandler(this.btnDeleteCategory_Click);
             // 
             // btnDeleteMaterial
             // 

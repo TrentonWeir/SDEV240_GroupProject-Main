@@ -1,13 +1,9 @@
-﻿using System;
+﻿using MaterialCostLib.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using MaterialCostLib.Models;
-using Microsoft.VisualBasic.FileIO;
-using Microsoft.Office.Interop.Excel;
-using ExcelDataReader;
 
 namespace MaterialCostLib.DataService
 {
@@ -79,6 +75,7 @@ namespace MaterialCostLib.DataService
             }
             catch (Exception ex)
             {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
                 return new List<MaterialDTO>();
             }
 
@@ -93,10 +90,12 @@ namespace MaterialCostLib.DataService
                 InsertMaterialBase(list);
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
                 return false;
             }
         }
+
     }
 }

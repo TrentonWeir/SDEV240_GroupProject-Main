@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MaterialCostLib.BusinessLayer;
+﻿using MaterialCostLib.BusinessLayer;
 using MaterialCostLib.Models;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 
 
 namespace SDEV240_GroupProject
@@ -32,7 +26,7 @@ namespace SDEV240_GroupProject
         }
         private void InputFunction()
         {
-           //File.Delete("../../../DataSource/MainDataBase.csv");//Used for deleteing everthing inTests
+            //No longer used. This was the first method for inputing data before it was moved tot he SmallPricingBuild app. This is still used in the main group project.
             MainDTO item = new MainDTO();
             item.Category = ddlCategoryInput.Text;
             item.Item = txtItem.Text;
@@ -47,48 +41,15 @@ namespace SDEV240_GroupProject
             db.InsertDataToMain(list.ToList());
         }
 
-        private void btnNewCostRecord_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if(ValidateTextBoxes())
-                {
-                    InputFunction();
-                }
-                else
-                {
-                    MessageBox.Show($"Please enter the Unit Cost with a number, No \"$\" or letters please.");
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"{ex}");
-            }
-                
-            
-        }
-        private bool ValidateTextBoxes()
-        {
-            var str = string.Empty;
-            bool isValid = true;
-            if (string.IsNullOrWhiteSpace(txtUnitCost.Text) && Convert.ToDecimal(txtUnitCost.Text) > 0)
-            {
-
-            }
-            else
-                str += $"Please enter the Unit Cost with a number, No \"$\" or letters please.";
-
-            return isValid;
-            
-        }
-
         private void InputForm_Load(object sender, EventArgs e)
         {
+            // activates drop downs and populates with data from database
             LoadMaterials();
             LoadCategories();
         }
         private void LoadMaterials()
         {
+            //finds data from database and populates dropdown
             try
             {
                 var db = new MaterialCostLib.BusinessLayer.Main();
@@ -98,7 +59,7 @@ namespace SDEV240_GroupProject
                     ddlMaterialInput.Items.Add(item.Material);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"{ex}");
             }
@@ -106,60 +67,105 @@ namespace SDEV240_GroupProject
         }
         private void LoadCategories()
         {
-            var db = new MaterialCostLib.BusinessLayer.Main();
-            var data = db.SelectCategorylData();
-            foreach (var item in data)
+            //finds data from database and populates dropdown
+            try
             {
-                ddlCategoryInput.Items.Add(item.Category);
+                var db = new MaterialCostLib.BusinessLayer.Main();
+                var data = db.SelectCategorylData();
+                foreach (var item in data)
+                {
+                    ddlCategoryInput.Items.Add(item.Category);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}");
             }
         }
         private void RefreshThisForm()
         {
+            //Refreshes page
             try
             {
                 DdlClear();
                 LoadCategories();
                 LoadMaterials();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show($"{ex}");
+                MessageBox.Show($"{ex.Message}");
             }
         }
         private void DdlClear()
         {
+            // clears dropdown data
             ddlCategoryInput.Items.Clear();
             ddlMaterialInput.Items.Clear();
         }
 
         private void btnCategorySave_Click(object sender, EventArgs e)
         {
-            var db = new MaterialCostLib.BusinessLayer.Main();
-            db.InsertIntoCategory(txtCategory.Text);
-            txtCategory.Text = string.Empty;
-            RefreshThisForm();
+            // saves Category to database
+            try
+            {
+                var db = new MaterialCostLib.BusinessLayer.Main();
+                db.InsertIntoCategory(txtCategory.Text);
+                txtCategory.Text = string.Empty;
+                RefreshThisForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}");
+            }
         }
 
         private void btnMaterialSave_Click(object sender, EventArgs e)
         {
-            var db = new MaterialCostLib.BusinessLayer.Main();
-            db.InsertIntoMaterial(txtMaterial.Text);
-            txtMaterial.Text = string.Empty;
-            RefreshThisForm();
+            //saves material to database
+            try
+            {
+                var db = new MaterialCostLib.BusinessLayer.Main();
+                db.InsertIntoMaterial(txtMaterial.Text);
+                txtMaterial.Text = string.Empty;
+                RefreshThisForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}");
+            }
         }
 
         private void btnDeleteMaterial_Click(object sender, EventArgs e)
         {
+            // deletes material from database
             var db = new Main();
             bool result = db.DeleteMaterial(txtMaterial.Text);
             if (!result)
             {
-                MessageBox.Show("Failed to delete Material. Check your spelling.");
+                MessageBox.Show("Failed to delete Material. Check your spelling. Copy and Paste from Material drop down if needed.");
             }
             else
             {
                 MessageBox.Show($"{txtMaterial.Text} has been successfully removed.");
                 txtMaterial.Text = string.Empty;
+                RefreshThisForm();
+            }
+        }
+
+        private void btnDeleteCategory_Click(object sender, EventArgs e)
+        {
+            //deletes category from database
+            var db = new Main();
+            bool result = db.DeleteCategroy(txtMaterial.Text);
+
+            if (!result)
+            {
+                MessageBox.Show("Failed to delete Category. Make sure the text matches exactly. Copy and paste from the category drop down if needed.");
+            }
+            else
+            {
+                MessageBox.Show($"{txtCategory.Text} has been successfully removed.");
+                txtCategory.Text = string.Empty;
                 RefreshThisForm();
             }
         }

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MaterialCostLib.DataService;
+﻿using MaterialCostLib.DataService;
 using MaterialCostLib.Models;
-using Microsoft.Office.Interop.Excel;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
-namespace MaterialCostLib.BusinessLayer 
+namespace MaterialCostLib.BusinessLayer
 {
     public class Main : DataService.MainBase
     {
@@ -20,14 +15,15 @@ namespace MaterialCostLib.BusinessLayer
             {
                 var db = new Main();
                 var dba = db.SelectDataFromMainCSV();
-                foreach(var item in dba)
+                foreach (var item in dba)
                 {
                     item.Cost = (item.UnitCost * item.Qty).ToString("C", CultureInfo.CurrentCulture);
                 }
                 return dba;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
                 return new List<MainDTO>();
             }
         }
@@ -55,6 +51,7 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch (Exception ex)
             {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
                 return new List<MaterialDTO>();
             }
         }
@@ -68,6 +65,7 @@ namespace MaterialCostLib.BusinessLayer
             }
             catch (Exception ex)
             {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
                 return new List<CategoryDTO>();
             }
         }
@@ -77,7 +75,7 @@ namespace MaterialCostLib.BusinessLayer
             {
                 var db = new MainBase();
                 db.InsertDataToMain(list);
-                
+
             }
             catch (Exception ex)
             {
@@ -97,6 +95,19 @@ namespace MaterialCostLib.BusinessLayer
                 File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
         }
+        public void InsertEstimateDataToMain(List<MainDTO> list, int id)
+        {
+            try
+            {
+                var db = new MainBase();
+                db.InsertEstimateDataToMainBase(list, id);
+
+            }
+            catch (Exception ex)
+            {
+                File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
+            }
+        }
         public void InsertIntoMaterial(string item)
         {
             try
@@ -104,7 +115,7 @@ namespace MaterialCostLib.BusinessLayer
                 var db = new MaterialCostLib.DataService.MaterialsDataBase();
                 db.InsertMaterialBase(item);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
@@ -174,11 +185,26 @@ namespace MaterialCostLib.BusinessLayer
                     mb.DeleteGridSelectionBase(list);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 File.AppendAllText("../../../DataSource/ERRORLIST.csv", ex.Message);
             }
 
+        }
+
+
+        public bool DeleteCategroy(string categroy)
+        {
+            try
+            {
+                var db = new CategoryDataBase();
+                db.DeleteCategoryBase(categroy);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

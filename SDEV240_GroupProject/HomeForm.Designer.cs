@@ -30,10 +30,10 @@ namespace SDEV240_GroupProject
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSaveGrid = new System.Windows.Forms.Button();
             this.btnNavInput = new System.Windows.Forms.Button();
@@ -47,24 +47,25 @@ namespace SDEV240_GroupProject
             this.btnClearAllData = new System.Windows.Forms.Button();
             this.btnRefreshGrid = new System.Windows.Forms.Button();
             this.gvMaterialCost = new System.Windows.Forms.DataGridView();
-            this.savedEstimatesDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estimateIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.savedEstimatesDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnEditId = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvMaterialCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.savedEstimatesDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(164, 155);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(221, 23);
-            this.textBox1.TabIndex = 1;
+            this.txtSearch.Location = new System.Drawing.Point(164, 155);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(221, 23);
+            this.txtSearch.TabIndex = 1;
             // 
             // btnSearch
             // 
@@ -78,9 +79,9 @@ namespace SDEV240_GroupProject
             // 
             // btnSaveGrid
             // 
-            this.btnSaveGrid.Location = new System.Drawing.Point(871, 195);
+            this.btnSaveGrid.Location = new System.Drawing.Point(851, 195);
             this.btnSaveGrid.Name = "btnSaveGrid";
-            this.btnSaveGrid.Size = new System.Drawing.Size(95, 23);
+            this.btnSaveGrid.Size = new System.Drawing.Size(90, 23);
             this.btnSaveGrid.TabIndex = 3;
             this.btnSaveGrid.Text = "Save As Excel";
             this.btnSaveGrid.UseVisualStyleBackColor = true;
@@ -177,14 +178,14 @@ namespace SDEV240_GroupProject
             // gvMaterialCost
             // 
             this.gvMaterialCost.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvMaterialCost.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvMaterialCost.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gvMaterialCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvMaterialCost.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.estimateIdDataGridViewTextBoxColumn,
@@ -192,35 +193,27 @@ namespace SDEV240_GroupProject
             this.totalDataGridViewTextBoxColumn,
             this.dateDataGridViewTextBoxColumn});
             this.gvMaterialCost.DataSource = this.savedEstimatesDTOBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvMaterialCost.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvMaterialCost.DefaultCellStyle = dataGridViewCellStyle2;
             this.gvMaterialCost.Location = new System.Drawing.Point(83, 224);
             this.gvMaterialCost.Name = "gvMaterialCost";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvMaterialCost.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvMaterialCost.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gvMaterialCost.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvMaterialCost.Size = new System.Drawing.Size(883, 366);
+            this.gvMaterialCost.Size = new System.Drawing.Size(858, 366);
             this.gvMaterialCost.TabIndex = 0;
-            // 
-            // savedEstimatesDTOBindingSource
-            // 
-            this.savedEstimatesDTOBindingSource.DataSource = typeof(MaterialCostLib.Models.SavedEstimatesDTO);
-            // 
-            // mainDTOBindingSource
-            // 
-            this.mainDTOBindingSource.DataSource = typeof(MaterialCostLib.Models.MainDTO);
             // 
             // estimateIdDataGridViewTextBoxColumn
             // 
@@ -252,12 +245,31 @@ namespace SDEV240_GroupProject
             this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
             this.dateDataGridViewTextBoxColumn.Width = 150;
             // 
+            // savedEstimatesDTOBindingSource
+            // 
+            this.savedEstimatesDTOBindingSource.DataSource = typeof(MaterialCostLib.Models.SavedEstimatesDTO);
+            // 
+            // mainDTOBindingSource
+            // 
+            this.mainDTOBindingSource.DataSource = typeof(MaterialCostLib.Models.MainDTO);
+            // 
+            // btnEditId
+            // 
+            this.btnEditId.Location = new System.Drawing.Point(391, 182);
+            this.btnEditId.Name = "btnEditId";
+            this.btnEditId.Size = new System.Drawing.Size(125, 23);
+            this.btnEditId.TabIndex = 16;
+            this.btnEditId.Text = "Edit Searched Id";
+            this.btnEditId.UseVisualStyleBackColor = true;
+            this.btnEditId.Click += new System.EventHandler(this.btnEditId_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(1056, 602);
+            this.Controls.Add(this.btnEditId);
             this.Controls.Add(this.btnRefreshGrid);
             this.Controls.Add(this.btnClearAllData);
             this.Controls.Add(this.btnSmallList);
@@ -269,7 +281,7 @@ namespace SDEV240_GroupProject
             this.Controls.Add(this.btnNavInput);
             this.Controls.Add(this.btnSaveGrid);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.gvMaterialCost);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -284,7 +296,7 @@ namespace SDEV240_GroupProject
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnSaveGrid;
         private System.Windows.Forms.Button btnNavInput;
@@ -304,6 +316,7 @@ namespace SDEV240_GroupProject
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnEditId;
     }
 }
 

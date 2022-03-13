@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MaterialCostLib.Models
 {
     public class MainDTO
@@ -16,6 +11,6 @@ namespace MaterialCostLib.Models
         public float Qty { get; set; }
         public float UnitCost { get; set; }
         public string Cost { get; set; }
-        
+
     }
 }

@@ -33,15 +33,6 @@ namespace SDEV240_GroupProject
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gvMaterialCost = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gvSmallListBinding = new System.Windows.Forms.BindingSource(this.components);
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSaveToMainList = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -64,6 +55,17 @@ namespace SDEV240_GroupProject
             this.lblUnitCost = new System.Windows.Forms.Label();
             this.btnSaveDataToGrid = new System.Windows.Forms.Button();
             this.btnClearGrid = new System.Windows.Forms.Button();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvSmallListBinding = new System.Windows.Forms.BindingSource(this.components);
+            this.btnEditRow = new System.Windows.Forms.Button();
+            this.lblEditId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvMaterialCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSmallListBinding)).BeginInit();
             this.SuspendLayout();
@@ -104,66 +106,6 @@ namespace SDEV240_GroupProject
             this.gvMaterialCost.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvMaterialCost.Size = new System.Drawing.Size(841, 357);
             this.gvMaterialCost.TabIndex = 1;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // categoryDataGridViewTextBoxColumn
-            // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // itemDataGridViewTextBoxColumn
-            // 
-            this.itemDataGridViewTextBoxColumn.DataPropertyName = "Item";
-            this.itemDataGridViewTextBoxColumn.HeaderText = "Item";
-            this.itemDataGridViewTextBoxColumn.Name = "itemDataGridViewTextBoxColumn";
-            this.itemDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // materialDataGridViewTextBoxColumn
-            // 
-            this.materialDataGridViewTextBoxColumn.DataPropertyName = "Material";
-            this.materialDataGridViewTextBoxColumn.HeaderText = "Material";
-            this.materialDataGridViewTextBoxColumn.Name = "materialDataGridViewTextBoxColumn";
-            this.materialDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // qtyDataGridViewTextBoxColumn
-            // 
-            this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
-            this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
-            this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
-            this.qtyDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // unitCostDataGridViewTextBoxColumn
-            // 
-            this.unitCostDataGridViewTextBoxColumn.DataPropertyName = "UnitCost";
-            this.unitCostDataGridViewTextBoxColumn.HeaderText = "UnitCost";
-            this.unitCostDataGridViewTextBoxColumn.Name = "unitCostDataGridViewTextBoxColumn";
-            this.unitCostDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // costDataGridViewTextBoxColumn
-            // 
-            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
-            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
-            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
-            this.costDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // gvSmallListBinding
-            // 
-            this.gvSmallListBinding.DataSource = typeof(MaterialCostLib.Models.MainDTO);
             // 
             // txtSearch
             // 
@@ -358,11 +300,91 @@ namespace SDEV240_GroupProject
             this.btnClearGrid.UseVisualStyleBackColor = true;
             this.btnClearGrid.Click += new System.EventHandler(this.btnClearGrid_Click);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
+            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // itemDataGridViewTextBoxColumn
+            // 
+            this.itemDataGridViewTextBoxColumn.DataPropertyName = "Item";
+            this.itemDataGridViewTextBoxColumn.HeaderText = "Item";
+            this.itemDataGridViewTextBoxColumn.Name = "itemDataGridViewTextBoxColumn";
+            this.itemDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // materialDataGridViewTextBoxColumn
+            // 
+            this.materialDataGridViewTextBoxColumn.DataPropertyName = "Material";
+            this.materialDataGridViewTextBoxColumn.HeaderText = "Material";
+            this.materialDataGridViewTextBoxColumn.Name = "materialDataGridViewTextBoxColumn";
+            this.materialDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // qtyDataGridViewTextBoxColumn
+            // 
+            this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
+            this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
+            this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
+            this.qtyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // unitCostDataGridViewTextBoxColumn
+            // 
+            this.unitCostDataGridViewTextBoxColumn.DataPropertyName = "UnitCost";
+            this.unitCostDataGridViewTextBoxColumn.HeaderText = "UnitCost";
+            this.unitCostDataGridViewTextBoxColumn.Name = "unitCostDataGridViewTextBoxColumn";
+            this.unitCostDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // costDataGridViewTextBoxColumn
+            // 
+            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
+            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            this.costDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // gvSmallListBinding
+            // 
+            this.gvSmallListBinding.DataSource = typeof(MaterialCostLib.Models.MainDTO);
+            // 
+            // btnEditRow
+            // 
+            this.btnEditRow.Location = new System.Drawing.Point(392, 122);
+            this.btnEditRow.Name = "btnEditRow";
+            this.btnEditRow.Size = new System.Drawing.Size(111, 23);
+            this.btnEditRow.TabIndex = 24;
+            this.btnEditRow.Text = "Edit Row";
+            this.btnEditRow.UseVisualStyleBackColor = true;
+            this.btnEditRow.Click += new System.EventHandler(this.btnEditRow_Click);
+            // 
+            // lblEditId
+            // 
+            this.lblEditId.AutoSize = true;
+            this.lblEditId.Location = new System.Drawing.Point(86, 9);
+            this.lblEditId.Name = "lblEditId";
+            this.lblEditId.Size = new System.Drawing.Size(0, 13);
+            this.lblEditId.TabIndex = 25;
+            // 
             // SmallPricingBuild_NotSaved
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 508);
+            this.Controls.Add(this.lblEditId);
+            this.Controls.Add(this.btnEditRow);
             this.Controls.Add(this.btnClearGrid);
             this.Controls.Add(this.btnSaveDataToGrid);
             this.Controls.Add(this.lblUnitCost);
@@ -429,5 +451,7 @@ namespace SDEV240_GroupProject
         private System.Windows.Forms.DataGridViewTextBoxColumn unitCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnClearGrid;
+        private System.Windows.Forms.Button btnEditRow;
+        private System.Windows.Forms.Label lblEditId;
     }
 }
